@@ -15,13 +15,6 @@ function buildMetadata(sample) {
     Object.entries(sampleData).forEach(([key, value]) => {
       PANEL.append('h6').text(`${key}, ${value}`);
     })
-    
-    // BONUS: Build the Gauge Chart
-    // buildGauge(data.WFREQ);
-    
-    
-      
-    })
   }
   
   function buildCharts(sample) {
