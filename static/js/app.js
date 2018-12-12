@@ -14,8 +14,10 @@ function buildMetadata(sample) {
     // Using d3 to append new tags for each key-value in the metadata.
     Object.entries(sampleData).forEach(([key, value]) => {
       PANEL.append('h6').text(`${key}, ${value}`);
-    })
-  }
+    });
+    buildGauge(sampleData.WFREQ)
+  });
+}
   
   function buildCharts(sample) {
     
@@ -34,9 +36,9 @@ function buildMetadata(sample) {
       // console.log(sampleData.otu_labels);
       // console.log(sampleData.sample_values);
 
-      const otu_ids = sampleData.otu_ids;
-      const otu_labels = sampleData.otu_labels;
-      const sample_values = sampleData.sample_values;
+      let otu_ids = sampleData.otu_ids;
+      let otu_labels = sampleData.otu_labels;
+      let sample_values = sampleData.sample_values;
 
       //Building Bubble chart
       var bubbleData = [{
@@ -57,7 +59,7 @@ function buildMetadata(sample) {
         xaxis: {title: 'OTU ID'},
       };
 
-      Plotly.plot('bubble', bubbleData, bubbleLayout);
+      Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
       // Building Pie Chart
       var pieData = [{
@@ -72,7 +74,7 @@ function buildMetadata(sample) {
         margin: {t: 0, l: 0}
       }
 
-      Plotly.plot('pie', pieData, pieLayout); 
+      Plotly.newPlot('pie', pieData, pieLayout); 
 
     });
   }
@@ -84,8 +86,6 @@ function buildMetadata(sample) {
   //   var layout = { margin: { t: 30, b: 100 } };
   //   Plotly.plot("bar", data, layout);
   // });
-  
-
 
 function init() {
   // Grab a reference to the dropdown select element
